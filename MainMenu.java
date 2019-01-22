@@ -70,6 +70,44 @@ public class MainMenu extends JFrame {
 	}
 
 	//add actions to buttons
+	private void addActions() {
+
+		Play.addActionListener(new ActionListener() { 
+			public void actionPerformed(ActionEvent e) { 
+				dispose();
+				Game game = new Game();
+
+				if(Level1.isSelected()){
+					Ball.speed = 4;
+				} else if(Level2.isSelected()){
+					Ball.speed = 7;
+					Game.ai.speed = Ball.speed-1;
+					Game.player.speed = Game.ai.speed;
+				} else if (Level3.isSelected()){
+					Ball.speed = 10;
+					Game.ai.speed = Ball.speed-1;
+					Game.player.speed = Game.ai.speed;
+				} 
+
+				if(!(Level1.isSelected() || Level2.isSelected() || Level3.isSelected())){
+					JOptionPane.showMessageDialog(frame, "Please select a level");
+					new MainMenu();
+				} else {
+					JOptionPane.showMessageDialog(frame, "RULES: First to get 10 points, wins!\n"
+							+ "'W' for UP \n 'S' for DOWN \n ESC for QUIT");
+					userName = JOptionPane.showInputDialog("Please key in your name");
+					game.start();
+				}
+
+			}
+		});
+		
+		Quit.addActionListener(new ActionListener() { 
+			public void actionPerformed(ActionEvent e) { 
+				System.exit(0); 
+			}
+		});
+	}
 
 
 	public static void main(String[] args) {
