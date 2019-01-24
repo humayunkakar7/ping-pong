@@ -51,4 +51,17 @@ public class Ball {
 		collision(game);
 	}
 
+	public void render(Graphics g) {
+		g.setColor(Color.RED);
+		g.fillOval(x, y, size, size);
+	}
+
+	private void collision(Game game) {
+		if (boundingBox.intersects(Game.player.boundingBox)) {
+			vx = speed; // player paddle on left, so ball bounces towards right
+			// side
+		} else if (boundingBox.intersects(Game.ai.boundingBox)) {
+			vx = -speed; // AI paddle on left, so ball bounces towards left side
+		}
+	}
 }
