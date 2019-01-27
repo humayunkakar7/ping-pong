@@ -25,5 +25,19 @@ public class AIPaddle {
 		boundingBox.setBounds(x, y, width, height);
 	}
 
+	public void tick(Game game){
+		boundingBox.setBounds(x, y, width, height);
+		
+		if(Game.ball.y < y && y > 20){
+			y -= speed;
+		} else if(Game.ball.y > y && y + height <= game.getHeight()){
+			y += speed;
+		}
+	}
 
+	public void render(Graphics g){
+		//rendering the white block 
+		g.setColor(Color.WHITE);
+		g.fillRect(x, y, width, height);
+	}
 }
