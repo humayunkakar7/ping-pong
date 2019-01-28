@@ -13,7 +13,39 @@ public class InputHandler implements KeyListener {
 		game.addKeyListener(this);
 	}
 
+	public void keyPressed(KeyEvent e) {
+		int keyCode = e.getKeyCode();
 
+		// if 'W' is pressed
+		if (keyCode == KeyEvent.VK_W) {
+			Game.player.goingUp = true;
+
+		}
+		// if 'S' is pressed
+		if (keyCode == KeyEvent.VK_S) {
+			Game.player.goingDown = true;
+		}
+
+		// if 'ESC' is pressed
+		if (keyCode == KeyEvent.VK_ESCAPE){
+			JOptionPane.showMessageDialog(frame, "'ESC' pressed. Game exiting...");
+			Game.stop();
+		}
+	}
+
+	public void keyReleased(KeyEvent e) {	
+		int keyCode = e.getKeyCode();
+
+		// if 'W' is pressed and released
+		if (keyCode == KeyEvent.VK_W) {
+			Game.player.goingUp = false;
+		}
+		// if 'S' is pressed and released 
+		if (keyCode == KeyEvent.VK_S) {
+			Game.player.goingDown = false;
+		}
+
+	}
 
 	public void keyTyped(KeyEvent e) {
 
